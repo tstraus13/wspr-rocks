@@ -14,28 +14,37 @@ public class SearchResponse
     { 
         get
         {
-            return Data.Select(o => new Spot
+            var spots = new List<Spot>();
+
+            foreach (var data in Data)
             {
-                Id = UInt64.Parse(o[0].ToString()),
-                Time = DateTime.Parse(o[1].ToString()),
-                Band = Int16.Parse(o[2].ToString()),
-                RxSign = o[3].ToString(),
-                RxLatitude = float.Parse(o[4].ToString()),
-                RxLongitude = float.Parse(o[5].ToString()),
-                RxLocation = o[6].ToString(),
-                TxSign = o[7].ToString(),
-                TxLatitude = float.Parse(o[8].ToString()),
-                TxLongitude = float.Parse(o[9].ToString()),
-                TxLocation = o[10].ToString(),
-                Distance = UInt16.Parse(o[11].ToString()),
-                Azimuth = UInt16.Parse(o[12].ToString()),
-                Frequency = UInt32.Parse(o[13].ToString()),
-                Power = Int16.Parse(o[14].ToString()),
-                SNR = Int16.Parse(o[15].ToString()),
-                Drift = Int16.Parse(o[16].ToString()),
-                Version = o[17].ToString(),
-                Code = Int16.Parse(o[18].ToString())
-            }).ToList();
+                var spot = new Spot();
+
+                spot.Id = UInt64.Parse(data[0].ToString());
+                spot.Time = DateTime.Parse(data[1].ToString());
+                spot.Band = Int32.Parse(data[2].ToString());
+                spot.RxSign = data[3].ToString();
+                spot.RxLatitude = float.Parse(data[4].ToString());
+                spot.RxLongitude = float.Parse(data[5].ToString());
+                spot.RxLocation = data[6].ToString();
+                spot.TxSign = data[7].ToString();
+                spot.TxLatitude = float.Parse(data[8].ToString());
+                spot.TxLongitude = float.Parse(data[9].ToString());
+                spot.TxLocation = data[10].ToString();
+                spot.Distance = UInt32.Parse(data[11].ToString());
+                spot.Azimuth = UInt32.Parse(data[12].ToString());
+                spot.RxAzimuth = UInt32.Parse(data[13].ToString());
+                spot.Frequency = UInt32.Parse(data[14].ToString());
+                spot.Power = Int32.Parse(data[15].ToString());
+                spot.SNR = Int32.Parse(data[16].ToString());
+                spot.Drift = Int32.Parse(data[17].ToString());
+                spot.Version = data[18].ToString();
+                spot.Code = Int32.Parse(data[19].ToString());
+
+                spots.Add(spot);
+            }
+
+            return spots;
         }
     }
 
