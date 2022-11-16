@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using static WSPR.Rocks.Client.Models.Hours;
 
 namespace WSPR.Rocks.Client.Models;
 
@@ -18,7 +19,7 @@ public class SearchRequest
 
     public string Band { get; set; } = Bands.All;
 
-    public string Hours { get; set; } = WSPR.Rocks.Client.Models.Hours.One;
+    public string Hours { get; set; } = One;
 
     public bool Unique { get; set; } = false;
 
